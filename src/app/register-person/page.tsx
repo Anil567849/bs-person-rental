@@ -2,16 +2,16 @@
 import { useState, useRef } from 'react'
 
 export default function RegisterCab() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [price, setPrice] = useState('');
+  const [name, setName] = useState('Anil');
+  const [email, setEmail] = useState('anil@gmail.com');
+  const [phone, setPhone] = useState('7878787878');
+  const [price, setPrice] = useState('100');
   const [gender, setGender] = useState('male');
-  const [location, setLocation] = useState('');
-  const [km, setKM] = useState<number>(0);
-  const [dob, setDOB] = useState('');
-  const [bio, setBio] = useState('');
-  const [pref, setPref] = useState('');
+  const [location, setLocation] = useState('Delhi');
+  const [distance, setDistance] = useState<number>(10);
+  const [dob, setDOB] = useState('2000-01-03');
+  const [bio, setBio] = useState('my bio');
+  const [pref, setPref] = useState('my pref');
   const aadharCard = useRef<HTMLInputElement>(null);
   const [aadharCardPreview, setaadharCardPreview] = useState<string | null>(null)
   const photo = useRef<HTMLInputElement>(null);
@@ -32,7 +32,7 @@ export default function RegisterCab() {
 
   async function handleSubmit(e: any){
     e.preventDefault();
-    // console.log({name, phone, gender, location, km, dob, bio});
+    // console.log({name, phone, gender, location, distance, dob, bio});
 
     if(!photo || !photo.current || !photo.current.files) return;
     if(!aadharCard || !aadharCard.current || !aadharCard.current.files) return;
@@ -41,11 +41,13 @@ export default function RegisterCab() {
      formData.append('name', name);
      formData.append('email', email);
      formData.append('phone', phone);
+     formData.append('price', price);
      formData.append('gender', gender);
      formData.append('location', location);
-     formData.append('km', km.toString());
+     formData.append('distance', distance.toString());
      formData.append('dob', dob);
      formData.append('bio', bio);
+     formData.append('pref', pref);
      formData.append('photo', photo.current.files[0]);
      formData.append('aadharCard', aadharCard.current.files[0]);
      
@@ -137,13 +139,13 @@ export default function RegisterCab() {
                     onChange={(e: any) => setLocation(e.target.value)}/>
                 </div>
                 <div>
-                    <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Range in KM</label>
+                    <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Range in distance</label>
                     <input 
                     id="range" 
                     type="range" className="cursor-pointer block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                    value={km}
-                    onChange={(e: any) => setKM(e.target.value)}/>
-                    <span>{km}</span>
+                    value={distance}
+                    onChange={(e: any) => setDistance(e.target.value)}/>
+                    <span>{distance}</span>
                 </div>
                 <div>
                     <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Date of Birth</label>

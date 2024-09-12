@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from "react";
 import UserCard2 from "./components/UserCard2"
 
 
@@ -84,13 +85,45 @@ const sampleUsers = [
       distance: 2,
       price: 125,
     },
-  ];
+];
+
+interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  price: string;
+  gender: string;
+  location: string;
+  distance: string;
+  dob: string;
+  bio: string;
+  pref: string;
+  photoArrayBuffer: string;
+  aadharCardArrayBuffer: string;
+  join: string;
+  __v: number;
+}
   
 
-export default function RegisterCab() {
+export default function SearchUser() {
 
-  return (
-    
+  const [users, setUsers] = useState<IUser[] | null>(null);
+
+  async function fetchUsers(){
+    const url = 'http://localhost:3000/api/get-users';
+    const res = await fetch(url);
+    const {data} = await res.json();
+    // console.log(data);
+    setUsers(data);
+  }
+
+  useEffect(() => {
+    fetchUsers();
+  }, [])
+  
+
+  return (    
     <section className="w-full min-h-screen mx-auto flex flex-col items-center bg-[url('/bg.jpg')]">
         <div className="w-[70vw]pt-4 mb-10">
             <h1 className="w-[70vw] text-center text-white text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl p-6">
@@ -99,15 +132,20 @@ export default function RegisterCab() {
         </div>
       <div className="w-[80vw] grid grid-cols-3 gap-8 pt-4">
         {
-          sampleUsers.map((user, ind) => {
+          users === null ? <h1 className="text-2xl">Loading...</h1> :
+          users.length === 0 && <h1 className="text-2xl">no users found</h1>
+        }
+        {
+          users && users.map((user, ind) => {
             return <UserCard2 key={ind}
-            imageUrl={user.imageUrl}
+            imageUrl={user.photoArrayBuffer}
             name={user.name}
             location={user.location}
-            age={user.age}
+            age={20}
             bio={user.bio}
-            distance={user.distance}
-            price={user.price}
+            distance={parseInt(user.distance)}
+            price={parseInt(user.price)}
+            phone={parseInt(user.phone)}
              />
           })
         }
