@@ -114,7 +114,7 @@ export default function SearchUser() {
     const url = 'http://localhost:3000/api/get-users';
     const res = await fetch(url);
     const {data} = await res.json();
-    // console.log(data);
+    console.log(data);
     setUsers(data);
   }
 
@@ -132,7 +132,7 @@ export default function SearchUser() {
         </div>
       <div className="w-[80vw] grid grid-cols-3 gap-8 pt-4">
         {
-          users === null ? <h1 className="text-2xl">Loading...</h1> :
+          users === null || users === undefined ? <h1 className="text-2xl">Loading...</h1> :
           users.length === 0 && <h1 className="text-2xl">no users found</h1>
         }
         {
