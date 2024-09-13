@@ -1,9 +1,6 @@
-# Influencer and Brand Review App
+# Person Rental Service
 
-![image](https://github.com/user-attachments/assets/9401044a-22ec-4c7c-b9e6-59909f7d48a2)
+![image](https://github.com/user-attachments/assets/ea19ae8a-6314-451d-a1de-186cffafd940)
 
-![image](https://github.com/user-attachments/assets/fb56f5ad-e785-411b-bcda-b3735f64c3a6)
-
-![image](https://github.com/user-attachments/assets/a1b4ac5a-4874-4257-850e-f27bd20026ee)
-
+![image](https://github.com/user-attachments/assets/3b20eb2d-eab6-4a56-b81c-e8344744dad7)
 
